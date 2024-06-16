@@ -1,0 +1,83 @@
+
+    <nav class="pcoded-navbar">
+        <div class="navbar-wrapper">
+            <div class="navbar-brand header-logo">
+                <a target="_blank" 
+                   href="" class="b-brand">
+                    <div class="b-bg">
+                        <i class="feather icon-trending-up"></i>
+                    </div>
+                    <span class="b-title">HariGuru</span><br>
+                   
+                </a>
+               
+                <a class="mobile-menu" id="mobile-collapse" href="javascript:"><span></span></a>
+            </div>
+            <center><h4><small>{{request.session.ename}}</small></h4></center>
+            <div class="navbar-content scroll-div">
+                <ul class="nav pcoded-inner-navbar">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
+                    <li data-username="dashboard Default Ecommerce CRM Analytics Crypto Project" 
+                        class="nav-item {% if 'index' in segment %} active {% endif %}">
+                        <a href="/home" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a>
+                    </li>
+            
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Forms & table</label>
+                    </li>
+                    <li data-username="form elements advance componant validation masking wizard picker select" 
+                        class="nav-item {% if 'hh' in segment %} active {% endif %}">
+                        <a href="/custshow" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Customer</span></a>
+                    </li>
+                    {% if not request.session.ename %}
+                    <li data-username="Table bootstrap datatable footable" 
+                        class="nav-item {% if 'emp' in segment %} active {% endif %}" >
+                        <a href="/empshow" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Employee</span></a>
+                    </li>
+                    {% endif %}
+                    <li data-username="Table bootstrap datatable footable" 
+                        class="nav-item {% if 'pro' in segment %} active {% endif %}" >
+                        <a href="/proshow" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Product</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" 
+                    class="nav-item {% if 'oo' in segment %} active {% endif %}" >
+                    <a href="/ordershow" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Order</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" 
+                    class="nav-item {% if 'op' in segment %} active {% endif %}" >
+                    <a href="/pshow" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Order Purchase</span></a>
+                    </li>
+                    <li data-username="Table bootstrap datatable footable" 
+                    class="nav-item {% if 'or' in segment %} active {% endif %}" >
+                    <a href="/rshow" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Order Return</span></a>
+                    </li>
+
+                    <li data-username="Table bootstrap datatable footable" 
+                    class="nav-item {% if 'ii' in segment %} active {% endif %}" >
+                    <a href="/ishow" class="nav-link "><span class="pcoded-micon"><i class="feather icon-server"></i></span><span class="pcoded-mtext">Inventory</span></a>
+                </li>
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Mode</label>
+                    </li>
+                    <li data-username="Disabled Menu" class="nav-item">
+                        {% if request.session.ename %}
+                        <a href="{% url 'logoutt' %}" class="nav-link">
+                            <span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Logout</span>
+                        </a>
+                        {% else %}
+                        <a href="{% url 'logout' %}" class="nav-link">
+                            <span class="pcoded-micon"><i class="feather icon-power"></i></span><span class="pcoded-mtext">Logout</span>
+                        </a>
+                        {%endif%}
+                    </li>
+                    <li data-username="Disabled Menu" class="nav-item">
+                        <a href="{% url 'logout' %}" class="nav-link">
+                           </span><span class="pcoded-mtext">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>

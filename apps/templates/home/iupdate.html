@@ -1,0 +1,99 @@
+{% extends "layouts/base.html" %}
+
+{% block title %} UI Forms {% endblock %} 
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+<div class="pcoded-content">
+    <div class="pcoded-inner-content">
+        <!-- [ breadcrumb ] start -->
+        <div class="page-header">
+            <div class="page-block">
+                <div class="row align-items-center">
+                    <div class="col-md-12">
+                        <div class="page-header-title">
+                            <h5 class="m-b-10">Form Elements</h5>
+                        </div>
+                        <ul class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="/"><i class="feather icon-home"></i></a></li>
+                            <li class="breadcrumb-item"><a href="javascript:">Inventory</a></li>
+                <li class="breadcrumb-item"><a href="javascript:">Create</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- [ breadcrumb ] end -->
+        <div class="main-body">
+            <div class="page-wrapper">
+                <!-- [ Main Content ] start -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <h5>Inventory</h5>
+                            </div>
+                            <div class="card-body">
+                                <h5>Form controls</h5>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <form method="POST" action="{% url 'iupdate' cust.id %}">
+                                            {% csrf_token %}
+                                            <div class="form-group">
+                                                <label for="exampleInputEmail1">Product Name</label>
+                                                <input type="text" class="form-control"name="product" value="{{cust.proid.id}}" readonly>
+                                             
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Manufacturing Date</label>
+                                                <input type="date" class="form-control"name="jdate" placeholder="worker" max="{{ today | date:'Y-m-d' }}" id="jdate" value="{{cust.mfgdate | date:'Y-m-d' }}">
+                                                <span id="date-error" style="color: red;"></span> 
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="exampleFormControlSelect1">Quantity</label>
+                                                <input type="number" class="form-control"name="qty" placeholder="Quantity" value={{cust.qty}}>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                      
+                                    </div>
+                                    <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label>Batchno</label>
+                                                <input type="number" class="form-control" name="name" placeholder="Name" value={{cust.batchno}} readonly>
+                                            </div>                                     
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- [ Main Content ] end -->
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+
+<script>
+    document.getElementById('jdate').addEventListener('input', function() {
+        var inputDate = this.value;
+        var today = new Date().toISOString().split('T')[0];
+
+        if (inputDate > today) {
+            document.getElementById('date-error').innerText = 'Join date cannot be in the future.';
+            document.getElementById('jdate').setCustomValidity('Join date cannot be in the future.');
+        } else {
+            document.getElementById('date-error').innerText = '';
+            document.getElementById('jdate').setCustomValidity('');
+        }
+    });
+</script>{% endblock javascripts %}

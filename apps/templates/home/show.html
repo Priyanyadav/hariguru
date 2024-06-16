@@ -1,0 +1,910 @@
+{% extends "layouts/base.html" %} {% block title %} UI Tables {% endblock %}
+{% load static %}
+
+<!-- Specific CSS goes HERE -->
+{% block stylesheets %}{% endblock stylesheets %} {% block content %}
+{% if cust %}
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Bootstrap Basic Tables</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="feather icon-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#!">Customer</a></li>
+              <li class="breadcrumb-item"><a href="javascript:">Show</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <!-- [ Hover-table ] start -->
+          {% if h %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Customer</h5>
+
+                <a
+                  href="/custadd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>address</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in h %}
+                      <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.cname}}</td>
+                        <td>{{i.email}}</td>
+                        <td>{{i.mobile}}</td>
+                        <th>{{i.address}}</th>
+                        <td>
+                          <a
+                            href="{% url 'custupdate' i.id %}"
+                            class="label theme-bg2 text-white f-12"
+                            >Edit</a
+                          >
+                          <a
+                            href="{% url 'custdelete' i.id %}"
+                            class="label theme-bg text-white f-12"
+                            onclick="return delMsg()"
+                            >Delete</a
+                          >
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Customer</h5>
+
+                <a
+                  href="/custadd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Mobile</th>
+                        <th>address</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+          {% endif %}
+          <!-- [ Hover-table ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if ooo %}
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Basic Tables</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="feather icon-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#!">Order</a></li>
+              <li class="breadcrumb-item"><a href="javascript:">Show</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <!-- [ Hover-table ] start -->
+          {% if o %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Order</h5>
+
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in o %}
+                      <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.custid.cname}}</td>
+                        <th>{{i.proid.pname}}</th>
+                        <th>{{i.qty}}</th>
+                        <td>{{i.amuont}}</td>
+                        <td>{{i.status}}</td>
+                        
+                        <td>
+                          <a
+                            href="{% url 'orderup' i.id %}"
+                            class="label theme-bg2 text-white f-12"
+                            >Edit</a
+                            >
+                            <a
+                            href="{% url 'generate_pdf' i.id %}"
+                            class="label theme-bg text-white f-12"
+                            >Invoice</a
+                          >
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Customer</h5>
+
+                <a
+                  href="/custadd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Status</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+          {% endif %}
+          <!-- [ Hover-table ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if ore %}
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Bootstrap Basic Tables</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="feather icon-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#!">Order Return</a></li>
+              <li class="breadcrumb-item"><a href="javascript:">Show</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <!-- [ Hover-table ] start -->
+          {% if r %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Order Return</h5>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Order Id</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in r %}
+                      <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.orderid.id}}</td>
+                        <td>{{i.orderid.proid.pname}}</td>
+                        <th>{{i.orderid.proid.price}}</th>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Customer</h5>
+
+           
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Order Id</th>
+                        <th>Product Name</th>
+                        <th>Product Price</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+          {% endif %}
+          <!-- [ Hover-table ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if empp %}
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Basic Tables</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="feather icon-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#!">Employee</a></li>
+              <li class="breadcrumb-item"><a href="javascript:">Show</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <!-- [ Hover-table ] start -->
+          {% if emp %}
+<div class="col-xl-12">
+  <div class="card">
+    <div class="card-header">
+      <h5>Epmloyee</h5>
+      <a href="/empadd" class="label theme-bg2 text-white f-12 float-lg-right">Add</a>
+    </div>
+    <div class="card-block table-border-style">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr class="unread">
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Payroll</th>
+              <th>Join Date</th>
+              <th>Skill</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in emp %}
+            <tr class="unread">
+              <th scope="row">{{i.id}}</th>
+              <td>{{i.ename}}</td>
+              <td>{{i.email}}</td>
+              <td>{{i.mobile}}</td>
+              <td>{{i.payroll}}</td>
+              <td>{{i.emp_joindate}}</td>
+              <th>{{i.emp_skill}}</th>
+              <td>
+                <a
+                  href="{% url 'empupdate' i.id %}"
+                  class="label theme-bg2 text-white f-12"
+                  >Edit</a
+                >
+                <a
+                  href="{% url 'empdelete' i.id %}"
+                  class="label theme-bg text-white f-12"
+                  onclick="return delMsg()"
+                  >Delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% else %}
+<div class="col-xl-12">
+  <div class="card">
+    <div class="card-header">
+      <h5>Epmloyee</h5>
+      <a href="/empadd" class="label theme-bg2 text-white f-12 float-lg-right">Add</a>
+    </div>
+    <div class="card-block table-border-style">
+      <div class="table-responsive">
+        <table class="table table-hover">
+          <thead>
+            <tr class="unread">
+              <th>#</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Payroll</th>
+              <th>Join Date</th>
+              <th>Skill</th>
+              <th>action</th>
+            </tr>
+          </thead>
+          <tbody>
+{% endif %}
+   <!-- [ Hover-table ] end -->
+  </div>
+  <!-- [ Main Content ] end -->
+</div>
+</div>
+</div>
+</div>
+{% endif%}
+
+{% if pro %}
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Basic Tables</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="feather icon-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#!">Product</a></li>
+              <li class="breadcrumb-item"><a href="javascript:">Show</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <!-- [ Hover-table ] start -->
+          {% if prod %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Product</h5>
+
+                <a
+                  href="/proadd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Weigth</th>
+                        <th>Image</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in prod %}
+                      <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.pname}}</td>
+                        <td>{{i.price}}</td>
+                        <td>{{i.weigth}}</td>
+                        <td><img class="rounded-circle" style="width:40px;" src="{{i.pro_img.url}}" alt="activity-user"></td>
+                        <td>
+                          <a
+                            href="{% url 'proupdate' i.id %}"
+                            class="label theme-bg2 text-white f-12"
+                            >Edit</a
+                          >
+                          <a
+                            href="{% url 'prodelete' i.id %}"
+                            class="label theme-bg text-white f-12"
+                            onclick="return delMsg()"
+                            >Delete</a
+                          >
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Product</h5>
+
+                <a
+                  href="/proadd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Price</th>
+                        <th>Weigth</th>
+                        <th>Image</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+        {% endif %}
+          <!-- [ Hover-table ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+{% if opo %}
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Basic Tables</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="feather icon-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#!">Order Purchase</a></li>
+              <li class="breadcrumb-item"><a href="javascript:">Show</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <!-- [ Hover-table ] start -->
+          {% if p %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Product</h5>
+
+                <a
+                  href="/padd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Status</th>
+                        <th>price</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in p %}
+                      <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.proid.pname}}</td>
+                        <td>{{i.status}}</td>
+                        <td>{{i.price}}</td>
+                        <td>
+                          <a
+                            href="{% url 'opupdate' i.id %}"
+                            class="label theme-bg2 text-white f-12"
+                            >Edit</a
+                          >
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Order Purchase</h5>
+
+                <a
+                  href="/padd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Status</th>
+                        <th>price</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+        {% endif %}
+          <!-- [ Hover-table ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+
+
+{% if iii %}
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Basic Tables</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="feather icon-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#!">Inventory</a></li>
+              <li class="breadcrumb-item"><a href="javascript:">Show</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <!-- [ Hover-table ] start -->
+          {% if iiii %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Inventory</h5>
+
+                <a
+                  href="/iadd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Manufacturing Date</th>
+                        <th>Quantity</th>
+                        <th>Batchno</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in iiii %}
+                      <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.proid}}</td>
+                        <td>{{i.mfgdate}}</td>
+                        <td>{{i.qty}}</td>
+                        <td>{{i.batchno}}</td>
+                        <td>
+                          <a
+                            href="{% url 'iupdate' i.id %}"
+                            class="label theme-bg2 text-white f-12"
+                            >Edit</a
+                          >
+                          <a
+                          href="{% url 'idelete' i.id %}"
+                          class="label theme-bg text-white f-12"
+                          onclick="return delMsg()"
+                          >Delete</a
+                        >
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Inventory</h5>
+
+                <a
+                  href="/padd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Manufacturing Date</th>
+                        <th>Quantity</th>
+                        <th>Batchno</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+        {% endif %}
+          <!-- [ Hover-table ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% if vo %}
+<div class="pcoded-content">
+  <div class="pcoded-inner-content">
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+      <div class="page-block">
+        <div class="row align-items-center">
+          <div class="col-md-12">
+            <div class="page-header-title">
+              <h5 class="m-b-10">Basic Tables</h5>
+            </div>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html"><i class="feather icon-home"></i></a>
+              </li>
+              <li class="breadcrumb-item"><a href="#!">Inventory</a></li>
+              <li class="breadcrumb-item"><a href="javascript:">Show</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+    <div class="main-body">
+      <div class="page-wrapper">
+        <!-- [ Main Content ] start -->
+        <div class="row">
+          <!-- [ Hover-table ] start -->
+          {% if inv %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Inventory</h5>
+
+                <a
+                  href="/iadd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Manufacturing Date</th>
+                        <th>Quantity</th>
+                        <th>Batchno</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {% for i in inv %}
+                      <tr>
+                        <th scope="row">{{i.id}}</th>
+                        <td>{{i.proid}}</td>
+                        <td>{{i.mfgdate}}</td>
+                        <td>{{i.qty}}</td>
+                        <td>{{i.batchno}}</td>
+                        <td>
+                          <a
+                            href="{% url 'iupdate' i.id %}"
+                            class="label theme-bg2 text-white f-12"
+                            >Edit</a
+                          >
+                          <a
+                          href="{% url 'idelete' i.id %}"
+                          class="label theme-bg text-white f-12"
+                          onclick="return delMsg()"
+                          >Delete</a
+                        >
+                        </td>
+                      </tr>
+                      {% endfor %}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% else %}
+          <div class="col-xl-12">
+            <div class="card">
+              <div class="card-header">
+                <h5>Inventory</h5>
+
+                <a
+                  href="/padd"
+                  class="label theme-bg2 text-white f-12 float-lg-right"
+                  >Add</a>
+              </div>
+              <div class="card-block table-border-style">
+                <div class="table-responsive">
+                  <table class="table table-hover">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Product Name</th>
+                        <th>Manufacturing Date</th>
+                        <th>Quantity</th>
+                        <th>Batchno</th>
+                        <th>action</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+        {% endif %}
+          <!-- [ Hover-table ] end -->
+        </div>
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+  </div>
+</div>
+{% endif %}
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script type="text/javascript">
+  function delMsg() {
+    if (confirm("Are you sure about deleting record?")) {
+      alert("1 row deleted.");
+      return true;
+    } else return false;
+  }
+</script>
+{% endblock javascripts %}
